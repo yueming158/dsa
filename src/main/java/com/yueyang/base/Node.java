@@ -52,4 +52,7 @@ public class Node<T> {
         this.nextNode = nextNode;
         this.preNode = preNode;
     }
+
+
+
 }

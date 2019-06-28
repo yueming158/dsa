@@ -47,24 +47,19 @@ public class MyLinkedList<T> {
         Node<T> tmpNode = node;
         if (index == 0) {
             headNode = headNode.getNextNode();
-        } else{
-            for (int i = 0; i < index; i++) {
-                if (i == index - 1) {
-                    tmpNode = node.getNextNode();
-                    node.setNextNode(node.getNextNode().getNextNode());
-                } else {
-                    node = node.getNextNode();
-                }
+        } else {
+            for (int i = 0; i < index - 1; i++) {
+                node = node.getNextNode();
             }
+            tmpNode = node.getNextNode();
+            node.setNextNode(node.getNextNode().getNextNode());
         }
         size--;
         return tmpNode.getData();
     }
 
     public void insert(int index, T data) {
-        if (index < 0 || index > size) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
+        checkIndex(index);
         Node<T> node = new Node<T>(data);
         Node<T> p = headNode;
         if (index == 0) {
