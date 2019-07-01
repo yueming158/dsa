@@ -101,6 +101,47 @@ public class MyLinkedList<T> {
         }
         return -1;
     }
+
+    public void reserve() {
+        if (size == 0 || size == 1) {
+            return;
+        }
+        if (size == 2) {
+            tailNode.setNextNode(headNode);
+            headNode.setNextNode(null);
+            Node<T> tmpNode = headNode;
+            headNode = tailNode;
+            tailNode = tmpNode;
+            return;
+        }
+        Node<T> node = headNode;
+        Node<T> nextNode = node.getNextNode();
+        while (nextNode != null && nextNode.getNextNode() != null) {
+            Node<T> tmpNode = nextNode.getNextNode();
+            Node<T> tmpSecondNode = tmpNode.getNextNode();
+            nextNode.setNextNode(node);
+            node = tmpNode;
+            node.setNextNode(nextNode);
+            nextNode = tmpSecondNode;
+        }
+        //nextNode是尾结点
+        if (nextNode == null) {
+            headNode.setNextNode(null);
+            Node<T> tmpNode = headNode;
+            headNode = tailNode;
+            tailNode = tmpNode;
+            return;
+        } else {
+            nextNode.setNextNode(node);
+            headNode.setNextNode(null);
+            Node<T> tmpNode = headNode;
+            headNode = tailNode;
+            tailNode = tmpNode;
+            return;
+        }
+
+
+    }
 }
 
 

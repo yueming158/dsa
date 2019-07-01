@@ -36,15 +36,7 @@ public class MyLinkedListTest {
     public void testDel() {
         MyLinkedList<String> linkedList = new MyLinkedList<>();
         linkedList.add("a");
-        linkedList.add("b");
-        linkedList.add("c");
-        linkedList.add("d");
-        Assert.assertEquals("d", linkedList.del(3));
-        Node<String> node = linkedList.getHeadNode();
-        do {
-            System.out.println(node.getData());
-            node = node.getNextNode();
-        } while (node != null);
+        Assert.assertEquals("a", linkedList.del(0));
     }
 
     @Test
@@ -69,6 +61,21 @@ public class MyLinkedListTest {
         linkedList.add("c");
         linkedList.add("d");
         Assert.assertEquals(3,linkedList.indexOf("d"));
+    }
+
+    @Test
+    public void testReserve() {
+        MyLinkedList<String> linkedList = new MyLinkedList<>();
+        linkedList.add("a");
+        linkedList.add("b");
+        linkedList.add("c");
+
+        linkedList.reserve();
+        Node<String> node = linkedList.getHeadNode();
+        do {
+            System.out.println(node.getData());
+            node = node.getNextNode();
+        } while (node != null);
     }
 
 }
